@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@theme {
+  --font-body: "Roboto", sans-serif;
+  --container-padding: 2rem;
+  --container-center: true;
+}
+
+@layer base {
+  body {
+    @apply text-sm;
+  }
+  td {
+    @apply capitalize text-white/70;
+  }
+  thead td {
+    @apply text-white;
+  }
+}
+@layer components {
+  .btn {
+    @apply flex gap-2 items-center text-white py-2 px-4 rounded-md;
+  }
+  .input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all;
+  }
+  .container {
+    @apply max-w-250;
+  }       
+}
+@layer utilities {
+  .btn-red {
+    @apply bg-rose-900 hover:bg-rose-800;
+  }
+  .btn-green {
+    @apply bg-green-600 hover:bg-green-800;
+  }
+}

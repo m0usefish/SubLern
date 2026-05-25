@@ -27,7 +27,7 @@ export class ExercisesService {
 
     async generateExercises(userId: number, type: string = 'fill-in') {
         const words = await this.vocabularyService.findAll(userId);
-        if (words.length < 3) {
+        if (words.length < 4) {
             throw new BadRequestException('Не достатньо слів в словнику для генерації вправ. Додайте як мінімум 3 слова.');
         }
 
@@ -49,7 +49,7 @@ export class ExercisesService {
             }));
         } else if (type === 'article-trainer') {
             const nouns = words.filter(w => w.article || (w.partOfSpeech && w.partOfSpeech.toLowerCase().includes('іменник')));
-            if (nouns.length < 3) {
+            if (nouns.length < 4) {
                 throw new BadRequestException('Не достаньо іменників в словнику для тренування артиклів.');
             }
             const prioritizedNouns = sortWords([...nouns]).slice(0, 10);
@@ -72,7 +72,7 @@ export class ExercisesService {
                     .slice(0, 3)
                     .map(other => other.translation);
                 
-                while (wrongOptions.length < 3) wrongOptions.push('Інший варіант ' + Math.random().toString(36).substring(7));
+                while (wrongOptions.length < 4) wrongOptions.push('Інший варіант ' + Math.random().toString(36).substring(7));
                 
                 const options = [...wrongOptions, w.translation].sort(() => 0.5 - Math.random());
                 

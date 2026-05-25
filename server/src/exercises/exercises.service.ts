@@ -28,7 +28,7 @@ export class ExercisesService {
     async generateExercises(userId: number, type: string = 'fill-in') {
         const words = await this.vocabularyService.findAll(userId);
         if (words.length < 4) {
-            throw new BadRequestException('Не достатньо слів в словнику для генерації вправ. Додайте як мінімум 3 слова.');
+            throw new BadRequestException('Не достатньо слів в словнику для генерації вправ. Додайте як мінімум 4 слова.');
         }
 
         // score formula: incorrect * 2 - correct. Add slight randomness to avoid repetitive sequences.
@@ -72,7 +72,7 @@ export class ExercisesService {
                     .slice(0, 3)
                     .map(other => other.translation);
                 
-                while (wrongOptions.length < 4) wrongOptions.push('Інший варіант ' + Math.random().toString(36).substring(7));
+                while (wrongOptions.length < 3);
                 
                 const options = [...wrongOptions, w.translation].sort(() => 0.5 - Math.random());
                 

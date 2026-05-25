@@ -45,8 +45,8 @@ const Header: FC = () => {
                         >
                             <img
                                 src={logo}
-                                alt="img"
-                                className="relative top-1 -mr-13 -ml-13 h-auto w-40 object-contain"
+                                alt="SubLern Logo"
+                                className="relative top-1 -mr-6 -ml-6 h-auto w-28 object-contain sm:-mr-13 sm:-ml-13 sm:w-40"
                             />
                             <span className="hidden sm:inline">SubLern</span>
                         </Link>
@@ -66,9 +66,13 @@ const Header: FC = () => {
                     {/* Mobile menu button */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="lg:hidden text-gray-500 hover:text-pink-600 focus:outline-none"
+                        className="text-gray-500 hover:text-pink-600 focus:outline-none lg:hidden"
                     >
-                        {isMobileMenuOpen ? <BiX className="h-7 w-7" /> : <BiMenu className="h-7 w-7" />}
+                        {isMobileMenuOpen ? (
+                            <BiX className="h-7 w-7" />
+                        ) : (
+                            <BiMenu className="h-7 w-7" />
+                        )}
                     </button>
 
                     {/* Desktop Menu */}
@@ -176,7 +180,7 @@ const Header: FC = () => {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="lg:hidden border-t border-white/30 bg-white/95 backdrop-blur-xl px-4 py-4 space-y-4 shadow-lg absolute w-full left-0 z-50">
+                <div className="absolute left-0 z-50 w-full space-y-4 border-t border-white/30 bg-white/95 px-4 py-4 shadow-lg backdrop-blur-xl lg:hidden">
                     <div className="relative">
                         <input
                             type="text"
@@ -191,20 +195,85 @@ const Header: FC = () => {
                         <BiSearch className="absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     </div>
                     <div className="flex flex-col space-y-4">
-                        <NavLink to="/" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`}>Відео</NavLink>
+                        <NavLink
+                            to="/"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={({ isActive }) =>
+                                `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`
+                            }
+                        >
+                            Відео
+                        </NavLink>
                         {isAuth ? (
                             <>
-                                <NavLink to="/search" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`}>Пошук</NavLink>
-                                <NavLink to="/vocabulary" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`}>Словник</NavLink>
-                                <NavLink to="/exercises" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`}>Вправи</NavLink>
-                                <NavLink to="/profile" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`}>Профіль</NavLink>
+                                <NavLink
+                                    to="/search"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={({ isActive }) =>
+                                        `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`
+                                    }
+                                >
+                                    Пошук
+                                </NavLink>
+                                <NavLink
+                                    to="/vocabulary"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={({ isActive }) =>
+                                        `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`
+                                    }
+                                >
+                                    Словник
+                                </NavLink>
+                                <NavLink
+                                    to="/exercises"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={({ isActive }) =>
+                                        `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`
+                                    }
+                                >
+                                    Вправи
+                                </NavLink>
+                                <NavLink
+                                    to="/profile"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={({ isActive }) =>
+                                        `text-base font-medium ${isActive ? 'text-pink-700' : 'text-gray-700'}`
+                                    }
+                                >
+                                    Профіль
+                                </NavLink>
                                 {user?.role === 'ADMIN' && (
-                                    <NavLink to="/admin" onClick={() => setIsMobileMenuOpen(false)} className={({ isActive }) => `text-base font-medium ${isActive ? 'text-pink-700' : 'text-pink-600'}`}>Панель адміна</NavLink>
+                                    <NavLink
+                                        to="/admin"
+                                        onClick={() =>
+                                            setIsMobileMenuOpen(false)
+                                        }
+                                        className={({ isActive }) =>
+                                            `text-base font-medium ${isActive ? 'text-pink-700' : 'text-pink-600'}`
+                                        }
+                                    >
+                                        Панель адміна
+                                    </NavLink>
                                 )}
-                                <button onClick={() => { logoutHandler(); setIsMobileMenuOpen(false); }} className="flex w-full items-center text-base font-medium text-gray-500 hover:text-red-600 pt-2 border-t border-gray-100"><BiLogOut className="mr-1 h-4 w-4" />Вийти</button>
+                                <button
+                                    onClick={() => {
+                                        logoutHandler()
+                                        setIsMobileMenuOpen(false)
+                                    }}
+                                    className="flex w-full items-center border-t border-gray-100 pt-2 text-base font-medium text-gray-500 hover:text-red-600"
+                                >
+                                    <BiLogOut className="mr-1 h-4 w-4" />
+                                    Вийти
+                                </button>
                             </>
                         ) : (
-                            <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg bg-pink-600 px-4 py-2 text-center text-base font-medium text-white shadow-sm hover:bg-pink-700 mt-2">Увійти / Реєстрація</Link>
+                            <Link
+                                to="/auth"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="mt-2 rounded-lg bg-pink-600 px-4 py-2 text-center text-base font-medium text-white shadow-sm hover:bg-pink-700"
+                            >
+                                Увійти / Реєстрація
+                            </Link>
                         )}
                     </div>
                 </div>

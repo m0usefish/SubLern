@@ -36,7 +36,7 @@ const Home: FC = () => {
         }
     }
 
-    const levels = ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1']
+    const levels = ['ALL', 'A1', 'A2', 'B1', 'B2']
 
     const filteredVideos = videos.filter((v) => {
         const matchesLevel = filter === 'ALL' || v.level === filter

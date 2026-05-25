@@ -13,7 +13,7 @@ export class SubtitlesController {
   @UseInterceptors(FileInterceptor('file'))
    async uploadSubtitle(
         @Body('videoId') videoId: number,
-        @UploadedFile() file: Express.Multer.File
+        @UploadedFile() file: any
     ) {
         return this.subtitlesService.uploadSubtitle(videoId, file.buffer);
     }
